@@ -1,3 +1,5 @@
+let myLibrary = [];
+
 function Book(title, author, pages, read){
     this.title = title;
     this.author = author;
@@ -13,5 +15,26 @@ function Book(title, author, pages, read){
     }
 }
 
-const Book1 = new Book('the hobbit', 'J.R.R Tolkien', 297, true);
-Book1.info();
+const thehobbit = new Book('the hobbit', 'J.R.R Tolkien', 297, true);
+const rangerApprentice = new Book('Ranger Apprentice', 'Matt Hofman', 310, false)
+
+const addBookToLibrary = (book) => {
+    myLibrary.push(book);
+}
+addBookToLibrary(thehobbit);
+addBookToLibrary(rangerApprentice)
+
+const generateLibrary = () => {
+    const container = document.querySelector('.container');
+    for (let i = 0; i < myLibrary.length; i++){
+        const bookCard = document.createElement('div');
+        let title = document.createElement('h2');
+        bookCard.id = myLibrary[i].title;
+        title.textContent = myLibrary[i].title;
+        bookCard.appendChild(title);
+        container.appendChild(bookCard);
+    }
+        
+}
+console.log(myLibrary)
+generateLibrary();

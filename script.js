@@ -7,10 +7,9 @@ function Book(title, author, pages, read){
     this.read = read;
     this.info = function() {
         if (this.read == true){
-            console.log(`${this.title} by ${this.author}, ${this.pages}, read.`)
-            return `${this.title} by ${this.author}, ${this.pages}, read.`;
+            return `Read`;
         } else {
-            return `${this.title} by ${this.author}, ${this.pages}, not read.`;
+            return `Not read`;
         }; 
     }
 }
@@ -28,10 +27,27 @@ const generateLibrary = () => {
     const container = document.querySelector('.container');
     for (let i = 0; i < myLibrary.length; i++){
         const bookCard = document.createElement('div');
+        // add title
         let title = document.createElement('h2');
-        bookCard.id = myLibrary[i].title;
         title.textContent = myLibrary[i].title;
         bookCard.appendChild(title);
+
+        // add author
+        let author = document.createElement('h3');
+        author.textContent = myLibrary[i].author;
+        bookCard.appendChild(author);
+
+        // add page count
+        let pages = document.createElement('p');
+        pages.textContent = myLibrary[i].pages;
+        bookCard.appendChild(pages);
+
+        // read or not
+        let read = document.createElement('p');
+        read.textContent = myLibrary[i].info();
+        bookCard.appendChild(read);
+
+        bookCard.id = myLibrary[i].title;
         container.appendChild(bookCard);
     }
         

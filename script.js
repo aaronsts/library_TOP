@@ -1,4 +1,5 @@
 let myLibrary = [];
+let books = {};
 
 function Book(title, author, pages, read){
     this.title = title;
@@ -59,8 +60,12 @@ formElem.addEventListener('submit', (e) => {
     // create new object
     new FormData(formElem);
     // create new book instance
-    let test = new Book(formElem[0].value, formElem[1].value, formElem[2].value, formElem[3].value)
-    addBookToLibrary(test);
+    
+    books = new Book(formElem[0].value, formElem[1].value, formElem[2].value, formElem[3].value)
+    addBookToLibrary(books)
+    console.log(books)
+    console.log(myLibrary)
 })
-console.log(myLibrary)
+
+
 generateLibrary();

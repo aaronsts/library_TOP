@@ -52,5 +52,15 @@ const generateLibrary = () => {
     }
         
 }
+
+const formElem = document.querySelector('form');
+formElem.addEventListener('submit', (e) => {
+    e.preventDefault(); // prevent default behaviour from submitting a form
+    // create new object
+    new FormData(formElem);
+    // create new book instance
+    let test = new Book(formElem[0].value, formElem[1].value, formElem[2].value, formElem[3].value)
+    addBookToLibrary(test);
+})
 console.log(myLibrary)
 generateLibrary();

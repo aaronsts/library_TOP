@@ -105,6 +105,12 @@ submitForm.addEventListener('click',(e) => {
     console.group(readValue)
 })
 
+const deleteCard = document.querySelector('.container');
+
+deleteCard.addEventListener('click', (e) => {
+        console.log(e.target.id)
+})
+
 const addBookToLibrary = (title, author, pages, read) => {
     myLibrary.push(new Book(title, author, pages, read));
     updateLibrary(myLibrary)

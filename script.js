@@ -108,7 +108,8 @@ submitForm.addEventListener('click',(e) => {
 const deleteCard = document.querySelector('.container');
 
 deleteCard.addEventListener('click', (e) => {
-        console.log(e.target.id)
+        let cardDeleted = document.getElementById(e.target.id);
+        cardDeleted.remove();
 })
 
 const addBookToLibrary = (title, author, pages, read) => {

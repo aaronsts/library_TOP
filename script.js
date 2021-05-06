@@ -21,6 +21,12 @@ const generateLibrary = () => {
     const container = document.querySelector('.container');
     for (let i = 0; i < myLibrary.length; i++){
         const bookCard = document.createElement('div');
+
+        // add close button
+        let closeButton = document.createElement('button');
+        closeButton.id = myLibrary[i].title;
+        closeButton.textContent = 'X'
+        bookCard.appendChild(closeButton);
         // add title
         let title = document.createElement('h2');
         title.textContent = myLibrary[i].title;
@@ -47,6 +53,39 @@ const generateLibrary = () => {
         
 }
 
+// update the view if new book is added
+const updateLibrary = (myLibrary) => {
+    const container = document.querySelector('.container');
+    const bookCard = document.createElement('div');
+        // add close button
+        let closeButton = document.createElement('button');
+        closeButton.id = myLibrary[myLibrary.length-1].title;
+        closeButton.textContent = 'X'
+        bookCard.appendChild(closeButton);
+        // add title
+        let title = document.createElement('h2');
+        title.textContent = myLibrary[myLibrary.length-1].title;
+        bookCard.appendChild(title);
+
+        // add author
+        let author = document.createElement('h3');
+        author.textContent = myLibrary[myLibrary.length-1].author;
+        bookCard.appendChild(author);
+
+        // add page count
+        let pages = document.createElement('p');
+        pages.textContent = myLibrary[myLibrary.length-1].pages;
+        bookCard.appendChild(pages);
+
+        // read or not
+        let read = document.createElement('p');
+        read.textContent = myLibrary[myLibrary.length-1].info();
+        bookCard.appendChild(read);
+
+        bookCard.id = myLibrary[myLibrary.length-1].title;
+        container.appendChild(bookCard);
+}
+
 const submitForm = document.getElementById("submit");
 
 // On click, read the values in the form field and add them to the array.
@@ -68,8 +107,10 @@ submitForm.addEventListener('click',(e) => {
 
 const addBookToLibrary = (title, author, pages, read) => {
     myLibrary.push(new Book(title, author, pages, read));
+    updateLibrary(myLibrary)
     console.log(myLibrary)
-    generateLibrary()
 }
+
+generateLibrary()
 
 

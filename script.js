@@ -1,5 +1,4 @@
 let myLibrary = [];
-let books = {};
 
 function Book(title, author, pages, read){
     this.title = title;
@@ -7,7 +6,7 @@ function Book(title, author, pages, read){
     this.pages = pages;
     this.read = read;
     this.info = function() {
-        if (this.read == true){
+        if (this.read == 'true'){
             return `Read`;
         } else {
             return `Not read`;
@@ -17,12 +16,6 @@ function Book(title, author, pages, read){
 
 const thehobbit = new Book('the hobbit', 'J.R.R Tolkien', 297, true);
 const rangerApprentice = new Book('Ranger Apprentice', 'Matt Hofman', 310, false)
-
-const addBookToLibrary = (book) => {
-    myLibrary.push(book);
-}
-addBookToLibrary(thehobbit);
-addBookToLibrary(rangerApprentice)
 
 const generateLibrary = () => {
     const container = document.querySelector('.container');
@@ -54,18 +47,29 @@ const generateLibrary = () => {
         
 }
 
-const formElem = document.querySelector('form');
-formElem.addEventListener('submit', (e) => {
-    e.preventDefault(); // prevent default behaviour from submitting a form
-    // create new object
-    new FormData(formElem);
-    // create new book instance
-    
-    books = new Book(formElem[0].value, formElem[1].value, formElem[2].value, formElem[3].value)
-    addBookToLibrary(books)
-    console.log(books)
-    console.log(myLibrary)
+const submitForm = document.getElementById("submit");
+
+// On click, read the values in the form field and add them to the array.
+submitForm.addEventListener('click',(e) => {
+    e.preventDefault();
+    const titleField = document.getElementById('title');
+    const authorField = document.getElementById('author');
+    const pagesField = document.getElementById('pages');
+    const readField = document.getElementsByName('read');
+    let readValue;
+    for (let i = 0; i < readField.length; i++){
+        if(readField[i].checked){
+            readValue = readField[i].value
+        }
+    }
+    addBookToLibrary(titleField.value, authorField.value, pagesField.value, readValue);
+    console.group(readValue)
 })
 
+const addBookToLibrary = (title, author, pages, read) => {
+    myLibrary.push(new Book(title, author, pages, read));
+    console.log(myLibrary)
+    generateLibrary()
+}
 
-generateLibrary();
+

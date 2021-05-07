@@ -7,9 +7,9 @@ function Book(title, author, pages, read){
     this.read = read;
     this.info = function() {
         if (this.read == 'true'){
-            return `Read`;
+            return `read`;
         } else {
-            return `Not read`;
+            return `not read`;
         }; 
     }
 }
@@ -42,13 +42,20 @@ const generateLibrary = () => {
         pages.textContent = myLibrary[i].pages;
         bookCard.appendChild(pages);
 
-        // read or not
-        let read = document.createElement('p');
-        read.textContent = myLibrary[i].info();
-        bookCard.appendChild(read);
+        // read or not\
+        let readLabel = document.createElement('label')
+        let readToggle = document.createElement('input');
+        readToggle = document.createAttribute('type');
+        readToggle.setAttribute('type', 'checkbox');
+        let readSpan = document.createElement('span');
+    
+        bookCard.appendChild(readLabel);
+        bookCard.appendChild(readToggle);
+        bookCard.appendChild(readSpan);
 
         bookCard.id = myLibrary[i].title;
         container.appendChild(bookCard);
+
     }
         
 }
@@ -78,9 +85,24 @@ const updateLibrary = (myLibrary) => {
         bookCard.appendChild(pages);
 
         // read or not
-        let read = document.createElement('p');
-        read.textContent = myLibrary[myLibrary.length-1].info();
-        bookCard.appendChild(read);
+        let readLabel = document.createElement('label')
+        let readToggle = document.createElement('input');
+        readToggle.setAttribute('type', 'checkbox');
+        console.log(myLibrary[myLibrary.length-1].info());
+        if (myLibrary[myLibrary.length-1].info() == 'read'){
+            readToggle.checked = true;
+        } else {
+            readToggle.checked = false;
+        }
+        let readSpan = document.createElement('span');
+
+        // add classes
+        readLabel.classList.add('switch');
+        readSpan.classList.add('slider');
+        readLabel.appendChild(readToggle);
+        readLabel.appendChild(readSpan);
+        bookCard.appendChild(readLabel);
+        
 
         bookCard.id = myLibrary[myLibrary.length-1].title;
         container.appendChild(bookCard);
@@ -102,7 +124,6 @@ submitForm.addEventListener('click',(e) => {
         }
     }
     addBookToLibrary(titleField.value, authorField.value, pagesField.value, readValue);
-    console.group(readValue)
 })
 
 // Delete a card

@@ -7,28 +7,32 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="stylesheet.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap" rel="stylesheet"> 
     </head>
     <body>
-        <form id="form">
-            <label for="title">Title</label>
-            <input type="text" id="title" name="title"><br>
-
-            <label for="author">Author</label>
-            <input type="text" id="author" name="author"><br>
-
-            <label for="pages">Page Count</label>
-            <input type="text" id="pages" name="pages"><br>
-
-            <label for="read">Read it</label><br>
-            <label>Read</label>
-            <input type="radio" name="read" value="true">            
-            <label>Not Read</label>
-            <input type="radio" name="read" value="false">
-
-            <input type="submit" id="submit" value="submit">
-        </form>
-        <div class="container">
-            
+        <div class="header">
+            <h1>booklist</h1>
+        </div>
+        <div class="body">
+            <div class="form-container">
+                <form id="form">
+                    <input type="text" id="title" name="title" placeholder="Title"><br>
+    
+                    <input type="text" id="author" name="author" placeholder="Author"><br>
+    
+                    <input type="text" id="pages" name="pages" placeholder="Pagecount"><br>
+    
+                    <label>Read</label>
+                    <input type="radio" name="read" value="true">     <br>       
+                    <label>Not Read</label>
+                    <input type="radio" name="read" value="false"><br>
+    
+                    <input type="submit" id="submit" value="submit">
+                </form>
+            </div>
+            <div class="container">       
+            </div>
         </div>
         <script src="script.js"></script>
     </body>

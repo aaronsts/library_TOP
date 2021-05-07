@@ -105,8 +105,8 @@ submitForm.addEventListener('click',(e) => {
     console.group(readValue)
 })
 
+// Delete a card
 const deleteCard = document.querySelector('.container');
-
 deleteCard.addEventListener('click', (e) => {
         let cardDeleted = document.getElementById(e.target.id);
         cardDeleted.remove();

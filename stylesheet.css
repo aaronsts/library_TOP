@@ -23,6 +23,7 @@
     }
 
 .body {
+    padding: 2rem;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -49,6 +50,7 @@ input[type=submit]{
     width: 100%;
     background-color: #c5ffff;
     border: none;
+    cursor: pointer;
 }
 
 .container {

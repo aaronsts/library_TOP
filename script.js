@@ -66,7 +66,8 @@ const updateLibrary = (myLibrary) => {
     const bookCard = document.createElement('div');
         // add close button
         let closeButton = document.createElement('button');
-        closeButton.id = myLibrary[myLibrary.length-1].title;
+        closeButton.id = myLibrary[myLibrary.length-1].title+'-btn';
+        closeButton.setAttribute('onclick', 'deleteCard(this)')
         closeButton.textContent = 'X'
         bookCard.appendChild(closeButton);
         // add title
@@ -103,7 +104,6 @@ const updateLibrary = (myLibrary) => {
         readLabel.appendChild(readSpan);
         bookCard.appendChild(readLabel);
         
-
         bookCard.id = myLibrary[myLibrary.length-1].title;
         container.appendChild(bookCard);
 }
@@ -126,17 +126,14 @@ submitForm.addEventListener('click',(e) => {
     addBookToLibrary(titleField.value, authorField.value, pagesField.value, readValue);
 })
 
-// Delete a card
-const deleteCard = document.querySelector('.container');
-deleteCard.addEventListener('click', (e) => {
-        let cardDeleted = document.getElementById(e.target.id);
-        cardDeleted.remove();
-})
-
 const addBookToLibrary = (title, author, pages, read) => {
     myLibrary.push(new Book(title, author, pages, read));
     updateLibrary(myLibrary)
-    console.log(myLibrary)
+}
+
+// Delete a card
+const deleteCard = (e) => {
+    e.parentElement.remove();
 }
 
 generateLibrary()
